@@ -3,7 +3,7 @@ jobs:
   build:
     parallelism: 3
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: circleci/ruby:2.6.1-node-browsers
         environment:
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
@@ -62,7 +62,7 @@ jobs:
 
       - run:
           name: Create database yml file
-          command: cp config/database.yml.sampe config/database.yml
+          command: cp config/database.yml.sample config/database.yml
 
       - run:
           name: Database setup
@@ -73,7 +73,6 @@ jobs:
           name: Run rspec in parallel
           command: |
             bundle exec rspec --profile 10 \
-                              --format RspecJunitFormatter \
                               --out test_results/rspec.xml \
                               --format progress \
                               $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)

@@ -1,0 +1,7 @@
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'log/**/*'
+    - 'storage/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
