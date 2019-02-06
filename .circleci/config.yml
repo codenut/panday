@@ -62,7 +62,7 @@ jobs:
 
       - run:
           name: Create database yml file
-          command: cp config/database.yml.sampe config/database.yml
+          command: cp config/database.yml.sample config/database.yml
 
       - run:
           name: Database setup
