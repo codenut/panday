@@ -4,9 +4,13 @@ class DeviseCreatePeople < ActiveRecord::Migration[5.2]
   def change
     create_table :people do |t|
       ## Database authenticatable
-      t.string :email,              null: false, default: ""
-      t.string :phone_number,       null: false, default: ""
+      t.string :username,           null: true
+      t.string :email,              null: true
+      t.string :phone_number,       null: true
       t.string :encrypted_password, null: false, default: ""
+
+      t.string :first_name,         null: true, default: ""
+      t.string :last_name,          null: true, default: ""
 
       ## Recoverable
       t.string   :reset_password_token
@@ -31,6 +35,7 @@ class DeviseCreatePeople < ActiveRecord::Migration[5.2]
       t.timestamps null: false
     end
 
+    add_index :people, :username,             unique: true
     add_index :people, :email,                unique: true
     add_index :people, :phone_number,         unique: true
     add_index :people, :reset_password_token, unique: true
