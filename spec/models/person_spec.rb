@@ -1,13 +1,12 @@
 require "spec_helper"
 
 describe Person, type: :model do
-  let(:person) { create(:person, username: Faker::Name.unique.name,
-                        email: Faker::Internet::unique.safe_email,
-                        phone_number: Faker::PhoneNumber.unique.phone_number) }
+  let(:person) { build(:person) }
 
   describe "#create" do
     context "valid person" do
       it "should create a person in panday database" do
+        person.save
         expect(person).not_to be_nil
         expect(person).to be_valid
       end
@@ -33,6 +32,7 @@ describe Person, type: :model do
   describe "#update_attributes" do
     context "valid person" do
       it "should update person" do
+        person.save
         person.update_attributes(first_name: 'Mike')
         expect(person.first_name).to eq('Mike')
       end
